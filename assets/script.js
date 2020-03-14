@@ -98,7 +98,7 @@ function searchWeather(location) {
 }
 //Current UV index of city// 
 function uvIndex(lon, lat) {
-    const uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=07e46f2e34d3ec50a946d8cef79b24f7&lat=" + lat + "&lon=" + lon
+    const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=07e46f2e34d3ec50a946d8cef79b24f7&lat=" + lat + "&lon=" + lon
     $.ajax({
         url: uvURL,
         method: "GET"
@@ -115,7 +115,7 @@ function uvIndex(lon, lat) {
 //API provides weather forecast for every 3 hours in the next 5 days, daily averages need to be calculated with provided data//
 const forcastRow = $("#dailyforcast")
 function forecast(location) {
-    const forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=07e46f2e34d3ec50a946d8cef79b24f7 "
+    const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=07e46f2e34d3ec50a946d8cef79b24f7 "
 
     $.ajax({
         url: forecastURL,
@@ -174,7 +174,7 @@ function forecast(location) {
             forcastRow.append(cardBody)
             const date = $("<p>").attr("id", "forecastDates").text(moment().add(a, 'day').format("DD/MM/YYYY"))
             const icon = dayResponse.list[a * 8].weather[0].icon
-            const iconImg = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png")
+            const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png")
             const dailyForcastTemp = $("<p>").text("Temperature: " + averageTemp)
             const dailyForcastHumidity = $("<p>").text("Humidity: " + averageHumidity + "%")
             cardBody.append(date, iconImg, dailyForcastTemp, dailyForcastHumidity)
