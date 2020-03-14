@@ -1,7 +1,20 @@
 $("#clearButton").hide()
 $("#forecastBox").hide()
+$("#currentWeatherIcon").hide()
 let searchHistory = [] //empty array to store search items//
 const historyList = $("#historyList")//HTML <ul> element to store search history//
+
+//Load last searched city//
+loadPreviousSearch()
+function loadPreviousSearch() {
+    let previousHistory = JSON.parse(localStorage.getItem("SearchHistory"))
+    if (previousHistory !== null) {
+        $("#Current-Placeholder").empty()
+        let previouslocation = previousHistory[previousHistory.length - 1]
+        searchWeather(previouslocation)
+        forecast(previouslocation)
+    }
+}
 
 //Search bar//
 $("#button-addon1").on("click", function () {
@@ -9,23 +22,25 @@ $("#button-addon1").on("click", function () {
     $("#dailyforcast").empty()
     //User input location//
     let userInput = $("#userCity").val().trim()
-    let location = userInput.charAt(0).toUpperCase() + userInput.slice(1)
-    searchWeather(location)//display current weather//
-    forecast(location)//display 5day weather forecast//
-    //ADD SEARCH ITEM TO SEARCH HISTORY: If new search item is not present in array of search history, update local storage &list//
-    if (searchHistory.indexOf(location) == -1) {
-        //add to local storage//
-        searchHistory.push(location)
-        localStorage.setItem("SearchHistory", JSON.stringify(searchHistory))
-        //display location on search history//
-        let newLocation = $("<li>").attr("class", "list").text(location)
-        historyList.append(newLocation)
-        $("#clearButton").show()
-        //allow user to click on list items to display weather//
-        newLocation.on("click", function () {
-            newLocation = location;
-            clickHistory(location)
-        })
+    if (userInput !== "") {
+        let location = userInput.charAt(0).toUpperCase() + userInput.slice(1)
+        searchWeather(location)//display current weather//
+        forecast(location)//display 5day weather forecast//
+        //ADD SEARCH ITEM TO SEARCH HISTORY: If new search item is not present in array of search history, update local storage &list//
+        if (searchHistory.indexOf(location) == -1) {
+            //add to local storage//
+            searchHistory.push(location)
+            localStorage.setItem("SearchHistory", JSON.stringify(searchHistory))
+            //display location on search history//
+            let newLocation = $("<li>").attr("class", "list").text(location)
+            historyList.append(newLocation)
+            $("#clearButton").show()
+            //allow user to click on list items to display weather//
+            newLocation.on("click", function () {
+                newLocation = location;
+                clickHistory(location)
+            })
+        }
     }
 })
 
@@ -49,25 +64,23 @@ if (searchHistory.length > 0) {
     }
 }
 
-//History list click function//
+//History list item click function//
 function clickHistory(location) {
     $("#Current-Placeholder").empty()
     $("#dailyforcast").empty()
     searchWeather(location)
     forecast(location)
-
 }
 
-//clear search history//
+//clear search history option//
 $("#clearButton").on("click", function () {
     localStorage.removeItem("SearchHistory");
-    // historyList.empty()
-    // $("#clearButton").hide()
     location.reload()
 })
 
 //CURRENT WEATHER//
 function searchWeather(location) {
+    $("#currentWeatherIcon").show()
     //URL for weather API//
     const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=07e46f2e34d3ec50a946d8cef79b24f7"
 
@@ -77,7 +90,7 @@ function searchWeather(location) {
     }).then(function (response) {
         //display city's name
         const cityName = response.name
-        $(".city").text(cityName + " (" + moment().format("DD/MM/YYYY") + ")")
+        $("#city").text(cityName + " (" + moment().format("DD/MM/YYYY") + ")")
         //current weather icon
         const currentIcon = response.weather[0].icon
         $("#currentWeatherIcon").attr("src", "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png")
@@ -96,6 +109,7 @@ function searchWeather(location) {
         uvIndex(lon, lat);
     })
 }
+
 //Current UV index of city// 
 function uvIndex(lon, lat) {
     const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=07e46f2e34d3ec50a946d8cef79b24f7&lat=" + lat + "&lon=" + lon
@@ -106,8 +120,6 @@ function uvIndex(lon, lat) {
         const cityUV = uvResponse.value
         const UVdisplay = $(".UV")
         UVdisplay.text("UV index: " + cityUV)
-        //color code UV index:
-
     })
 }
 
@@ -168,16 +180,20 @@ function forecast(location) {
             let averageTemp = (totalTemp / 8).toFixed(0)
             let averageHumidity = (totalHumidity / 8).toFixed(0)
 
-            //create elements displaying average temperature and humidity and append to HTML 
+            //create elements displaying date, weather icon, average temperature and humidity and append to HTML 
             $("#forecastBox").show()
             const cardBody = $("<div>").attr("class", "oneDay")
-            forcastRow.append(cardBody)
+            const imgColumn = $("<div>").attr("class", "col-md-4")
+            const textColumn = $("<div>").attr("class", "col-md-8")
             const date = $("<p>").attr("id", "forecastDates").text(moment().add(a, 'day').format("DD/MM/YYYY"))
             const icon = dayResponse.list[a * 8].weather[0].icon
             const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png")
-            const dailyForcastTemp = $("<p>").text("Temperature: " + averageTemp)
+            const dailyForcastTemp = $("<p>").text("Temperature: " + averageTemp + " C")
             const dailyForcastHumidity = $("<p>").text("Humidity: " + averageHumidity + "%")
-            cardBody.append(date, iconImg, dailyForcastTemp, dailyForcastHumidity)
+            forcastRow.append(cardBody)
+            imgColumn.append(iconImg)
+            textColumn.append(date, dailyForcastTemp, dailyForcastHumidity)
+            cardBody.append(imgColumn, textColumn)
         }
     })
 }

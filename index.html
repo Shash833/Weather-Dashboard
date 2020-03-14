@@ -7,6 +7,8 @@
     <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
@@ -19,32 +21,42 @@
     </header>
     <main class="container">
         <div class="row">
+
+            <!--Search column-->
             <section class="col-md-3" , id="searchCol">
                 <p id="searchTitle">Search for a City:</p>
+                <!--Search input-->
                 <form class="input-group mb-3">
                     <input type="text" class="form-control" id="userCity">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1">S</button>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                            <a class="fas fa-search"></a>
+                        </button>
                     </div>
                 </form>
+                <!--search history list-->
                 <ul id="historyList">
-                    <!-- list of search history to be added -->
+                    <!-- list of search history to be added-->
                 </ul>
                 <button class="btn btn-outline-secondary" type="button" id="clearButton">Clear search history</button>
             </section>
-            <!-- search results -->
-            <section class="col-md-9">
 
+            <!-- weather results -->
+            <section class="col-md-9">
                 <!-- Current weather results -->
                 <article class="card">
                     <div class="card-body" id="currentWeatherCard">
-                        <img id="currentWeatherIcon">
-                        <p id="Current-Placeholder">Enter city name to display current weather results</p>
-                        <h2 class="city"></h2>
-                        <p class="temperature"></p>
-                        <p class="humidity"></p>
-                        <p class="wind"></p>
-                        <p class="UV"></p>
+                        <div id="Current-Placeholder">Enter city name to display current weather results</div>
+                        <div class="row">
+                            <img class="col-md-4" id="currentWeatherIcon">
+                            <div class="col-md-8" id="currentData">
+                                <h2 id="city"></h2>
+                                <div class="temperature"></div>
+                                <div class="humidity"></div>
+                                <div class="wind"></div>
+                                <div class="UV"></div>
+                            </div>
+                        </div>
                     </div>
                 </article>
                 <br>
