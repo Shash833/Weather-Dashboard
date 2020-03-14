@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Weather App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header>
+        <!-- heading/nav bar -->
+        <nav>
+            <h1> Weather Dashboard </h1>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="row">
+            <section class="col-md-3" , id="searchCol">
+                <p id="searchTitle">Search for a City:</p>
+                <form class="input-group mb-3">
+                    <input type="text" class="form-control" id="userCity">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1">S</button>
+                    </div>
+                </form>
+                <ul id="historyList">
+                    <!-- list of search history to be added -->
+                </ul>
+                <button class="btn btn-outline-secondary" type="button" id="clearButton">Clear search history</button>
+            </section>
+            <!-- search results -->
+            <section class="col-md-9">
+
+                <!-- Current weather results -->
+                <article class="card">
+                    <div class="card-body" id="currentWeatherCard">
+                        <img id="currentWeatherIcon">
+                        <p id="Current-Placeholder">Enter city name to display current weather results</p>
+                        <h2 class="city"></h2>
+                        <p class="temperature"></p>
+                        <p class="humidity"></p>
+                        <p class="wind"></p>
+                        <p class="UV"></p>
+                    </div>
+                </article>
+                <br>
+                <!--Five day forecast-->
+                <article class="card" id="forecastBox">
+                    <br>
+                    <h3 class="col-md-12">5 day Forcast:</h3>
+                    <div class="card-body" id="dailyforcast">
+                        <!--5 day forcast to be added through JS-->
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+
+</html>

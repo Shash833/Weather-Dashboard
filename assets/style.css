@@ -1,0 +1,57 @@
+header{
+    margin-bottom: 20px;
+    background-color: rgb(86, 153, 165);
+    padding: 10px;
+    text-align: center;
+}
+
+#searchTitle{
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+#searchCol{
+    background-color: rgb(236, 236, 236);
+}
+
+#green{
+    background-color:green;
+}
+#yellow{
+    background-color: yellow;
+}
+#orange{
+    background-color: orange;
+}
+#red{
+    background-color: red;
+}
+
+ul{
+    padding-left: 0px;
+}
+
+li{
+    background-color: rgba(255, 255, 255, 0.959);
+    margin: 2%;
+    list-style-position: inside;
+    list-style-type: none;
+    cursor: pointer;
+
+}
+
+img{
+    float: right;
+    margin-right: 30%;   
+}
+
+.oneDay{
+    background-color: rgb(212, 227, 230);
+    margin: 10px;
+    padding: 10px;
+}
+
+#forecastDates{
+    font-weight: bold;
+}
