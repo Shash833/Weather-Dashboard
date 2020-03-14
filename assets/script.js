@@ -1,6 +1,7 @@
 $("#clearButton").hide()
 $("#forecastBox").hide()
 $("#currentWeatherIcon").hide()
+$(".UV").hide()
 let searchHistory = [] //empty array to store search items//
 const historyList = $("#historyList")//HTML <ul> element to store search history//
 
@@ -81,6 +82,7 @@ $("#clearButton").on("click", function () {
 //CURRENT WEATHER//
 function searchWeather(location) {
     $("#currentWeatherIcon").show()
+    $(".UV").show()
     //URL for weather API//
     const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=07e46f2e34d3ec50a946d8cef79b24f7"
 
@@ -118,8 +120,21 @@ function uvIndex(lon, lat) {
         method: "GET"
     }).then(function (uvResponse) {
         const cityUV = uvResponse.value
-        const UVdisplay = $(".UV")
-        UVdisplay.text("UV index: " + cityUV)
+        const UVdisplay = $(".uvValue")
+        //color code UV index values//
+        if (cityUV <= 2) {
+            UVdisplay.attr("id", "green")
+        }
+        else if (cityUV > 2 && cityUV <= 5) {
+            UVdisplay.attr("id", "yellow")
+        }
+        else if (cityUV > 5 && cityUV <= 7) {
+            UVdisplay.attr("id", "orange")
+        }
+        else if (cityUV > 7) {
+            UVdisplay.attr("id", "red")
+        }
+        UVdisplay.text(cityUV)
     })
 }
 
