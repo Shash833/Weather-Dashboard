@@ -1,9 +1,12 @@
 header{
     margin-bottom: 20px;
     background-color: rgb(86, 153, 165);
-    color: white;
     padding: 10px;
     text-align: center;
+}
+
+h1{
+    color: white;
 }
 
 #searchTitle{
