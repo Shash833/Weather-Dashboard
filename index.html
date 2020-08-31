@@ -14,14 +14,13 @@
 
 <body>
     <header>
-        <!-- heading/nav bar -->
+        <!-- Heading/navbar -->
         <nav>
             <h1> Weather Dashboard </h1>
         </nav>
     </header>
     <main class="container">
         <div class="row">
-
             <!--Search column-->
             <section class="col-md-3" , id="searchCol">
                 <p id="searchTitle">Search for a City:</p>
@@ -34,37 +33,34 @@
                         </button>
                     </div>
                 </form>
-                <!--search history list-->
+                <!--Search history list-->
                 <ul id="historyList">
-                    <!-- list of search history to be added-->
+                    <!-- List with search history to be added-->
                 </ul>
                 <button class="btn btn-outline-secondary" type="button" id="clearButton">Clear search history</button>
             </section>
-
-            <!-- weather results -->
+            <!-- Weather results -->
             <section class="col-md-9">
                 <!-- Current weather results -->
-                <article class="card">
-                    <div class="card-body" id="currentWeatherCard">
-                        <div id="Current-Placeholder">Enter city name to display current weather results</div>
-                        <div class="row">
-                            <img class="col-md-4" id="currentWeatherIcon">
-                            <div class="col-md-8" id="currentData">
-                                <h2 id="city"></h2>
-                                <div class="temperature"></div>
-                                <div class="humidity"></div>
-                                <div class="wind"></div>
-                                <div class="UV">UV Index: <a class="uvValue"></a>
-                                </div>
+                <article id="currentWeatherCard">
+                    <div id="Current-Placeholder">Enter city name to display current weather results</div>
+                    <div class="row">
+                        <img class="col-md-4" id="currentWeatherIcon">
+                        <div class="col-md-8" id="currentData">
+                            <h2 id="city"></h2>
+                            <div class="temperature"></div>
+                            <div class="humidity"></div>
+                            <div class="wind"></div>
+                            <div class="UV">UV Index: <a class="uvValue"></a>
                             </div>
                         </div>
                     </div>
                 </article>
-                <br>
+                <hr>
                 <!--Five day forecast-->
-                <article class="card" id="forecastBox">
+                <article id="forecastBox">
                     <br>
-                    <h3 class="col-md-12">5 day Forcast:</h3>
+                    <h3 class="col-md-12">5 Day Forcast:</h3>
                     <div class="card-body" id="dailyforcast">
                         <!--5 day forcast to be added through JS-->
                     </div>
@@ -72,10 +68,12 @@
             </section>
         </div>
     </main>
+    <footer>
+        Ⓒ 2020 Shashini Mayadunne
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
-
 
 </html>
