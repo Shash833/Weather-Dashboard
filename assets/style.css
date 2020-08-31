@@ -6,6 +6,10 @@ header{
     color: white
 }
 
+h1{
+    color: white;
+}
+
 #searchTitle{
     font-weight: bold;
     font-size: 20px;
