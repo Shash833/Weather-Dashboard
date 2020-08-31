@@ -9,7 +9,7 @@ const historyList = $("#historyList")//HTML <ul> element to store search history
 loadPreviousSearch()
 function loadPreviousSearch() {
     let previousHistory = JSON.parse(localStorage.getItem("SearchHistory"))
-    if (previousHistory !== null) {
+    if (previousHistory) {
         $("#Current-Placeholder").empty()
         let previouslocation = previousHistory[previousHistory.length - 1]
         searchWeather(previouslocation)
@@ -23,7 +23,7 @@ $("#button-addon1").on("click", function () {
     $("#dailyforcast").empty()
     //User input location//
     let userInput = $("#userCity").val().trim()
-    if (userInput !== "") {
+    if (userInput) {
         let location = userInput.charAt(0).toUpperCase() + userInput.slice(1)
         searchWeather(location)//display current weather//
         forecast(location)//display 5day weather forecast//
@@ -48,7 +48,7 @@ $("#button-addon1").on("click", function () {
 //SEARCH HISTORY LIST//
 //check if there are any history items in local storage//
 let previousHistory = JSON.parse(localStorage.getItem("SearchHistory"))
-if (previousHistory !== null) {
+if (previousHistory) {
     searchHistory = previousHistory
 }
 //Display previous search history//

@@ -16,6 +16,12 @@ main{
     margin-bottom: 20px;
 }
 
+#Current-Placeholder{
+text-align: center;
+font-style: italic;
+margin: 30px;
+}
+
 #searchTitle{
     font-weight: bold;
     font-size: 20px;
